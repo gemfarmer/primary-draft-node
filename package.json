@@ -1,0 +1,24 @@
+{
+  "name": "node-babel-express",
+  "version": "0.0.0",
+  "description": "Basic Node Express App",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon --exec babel-node src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Brian Hedberg <briansheahedberg@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.4.3",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.4.3",
+    "nodemon": "^1.18.10"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^7.0.0",
+    "express": "^4.16.4"
+  }
+}
