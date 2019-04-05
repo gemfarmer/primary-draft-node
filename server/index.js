@@ -4,11 +4,12 @@ console.log(process.env.MY_SECRET);
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import express from 'express';
-
+import * as path from 'path';
 import models, { sequelize } from './models';
 import routes from './routes';
 const app = express();
 
+app.use(express.static(path.join(__dirname, 'client/build')));
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -20,8 +21,18 @@ app.use(async (req, res, next) => {
   next();
 });
 app.use('/session', routes.session);
-app.use('/users', routes.user);
-app.use('/messages', routes.message);
+app.use('/api/users', routes.user);
+app.use('/api/messages', routes.message);
+app.get('/api/getList', (req,res) => {
+    var list = ["item1", "item2", "item3"];
+    res.json(list);
+    console.log('Sent list of items');
+});
+// Handles any requests that don't match the ones above
+app.get('*', (req,res) =>{
+    res.sendFile(path.join(__dirname+'/client/build/index.html'));
+});
+
 
 
 const eraseDatabaseOnSync = false;
