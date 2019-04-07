@@ -8,22 +8,19 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/:userId', async (req, res) => {
-  // console.log(req.params.userId)
-  const user = await req.context.models.User.findById(
+  const user = await req.context.models.User.findByPk(
     req.params.userId,
   );
   return res.send(user);
 });
 
 router.post('/:userId/addToPool/:poolId', async (req, res) => {
-  // await console.log(req.context.models.User)
-  // const user = await req.context.models.User.findById(
-  //   req.params.userId,
-  // );
-  // console.log(user)
-  // console.log(req.params.poolId)
-  // user.update({ poolId: req.params.poolId })
-  // return res.send(user);
+  await console.log(req.context.models.User)
+  const user = await req.context.models.User.findByPk(
+    req.params.userId,
+  );
+  user.update({ poolId: req.params.poolId })
+  return res.send(user);
 });
 
 export default router;

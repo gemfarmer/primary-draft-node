@@ -8,9 +8,9 @@ const user = (sequelize, DataTypes) => {
 
   User.associate = models => {
     User.hasMany(models.Message, { onDelete: 'CASCADE' });
-  };
+  // };
 
-  User.associate = models => {
+  // User.associate = models => {
     User.belongsTo(models.Pool);
   };
 

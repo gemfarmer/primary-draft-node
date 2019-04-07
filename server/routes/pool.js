@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/:poolId', async (req, res) => {
-  const pool = await req.context.models.Pool.findOne(
+  const pool = await req.context.models.Pool.findByPk(
     req.params.poolId,
   );
   return res.send(pool);
