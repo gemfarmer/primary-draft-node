@@ -23,6 +23,7 @@ app.use(async (req, res, next) => {
 app.use('/session', routes.session);
 app.use('/api/users', routes.user);
 app.use('/api/messages', routes.message);
+app.use('/api/pools', routes.pool);
 app.get('/api/getList', (req,res) => {
     var list = ["item1", "item2", "item3"];
     res.json(list);
@@ -76,6 +77,12 @@ const createUsersWithMessages = async () => {
     },
     {
       include: [models.Message],
+    },
+  );
+
+  await models.Pool.create(
+    {
+      name: 'First Pool',
     },
   );
 };
