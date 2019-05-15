@@ -15,12 +15,42 @@ router.get('/:poolId', async (req, res) => {
   return res.send(pool);
 });
 
+router.get('/:poolId/users', async (req, res) => {
+  const pool = await req.context.models.Pool.findByPk(
+    req.params.poolId,
+  );
+
+  const users = await pool.getUsers();
+  return res.send(users);
+});
+
+// router.get('/:poolId/users/:userId/picks', async (req, res) => {
+//   // const pool = await req.context.models.Pool.findByPk(
+//   //   req.params.poolId,
+//   // );
+
+//   const picks = await req.context.models.Pool.fetchPicksByUser(req.context.models.User, req.params.userId);
+//   console.log(picks)
+//   // const users = await pool.getUsers();
+//   return res.send(picks);
+// });
+
+// router.get('/:poolId/availableCandidates', async (req, res) => {
+//   // const pool = await req.context.models.Pool.findByPk(
+//   //   req.params.poolId,
+//   // );
+
+//   const pool = await Pool.availableCandidates(req.params.poolId);
+//   // const users = await pool.getUsers();
+//   return res.send(pool);
+// });
+
 router.post('/', async (req, res) => {
   const pool = await req.context.models.Pool.create({
     name: req.body.text,
   });
 
-  return res.send(message);
+  return res.send(pool);
 });
 
 router.delete('/:poolId', async (req, res) => {
